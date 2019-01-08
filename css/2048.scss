@@ -1,0 +1,322 @@
+@charset "utf-8";
+body {
+  margin: 0;
+  position: relative;
+}
+
+.game {
+  position: relative;
+  .n2 {
+    background-color: #eee3da;
+  }
+
+  .n4 {
+    background-color: #ede0c8;
+  }
+
+  .n8 {
+    background-color: #f2b179;
+  }
+
+  .n16 {
+    background-color: #f59563;
+  }
+
+  .n32 {
+    background-color: #f67c5f;
+  }
+
+  .n64 {
+    background-color: #f65e3b;
+  }
+
+  .n128 {
+    background-color: #edcf72;
+  }
+
+  .n256 {
+    background-color: #edcc61;
+  }
+
+  .n512 {
+    background-color: #9c0;
+  }
+
+  .n1024 {
+    background-color: #33b5e5;
+  }
+
+  .n2048 {
+    background-color: #09c;
+  }
+
+  .n4096 {
+    background-color: #a6c;
+  }
+
+  .n8192 {
+    background-color: #93c;
+  }
+
+  .n2, .n4 {
+    color: #776e65;
+  }
+
+  .n8, .n16, .n32, .n64, .n128, .n256, .n512, .n1024, .n2048, .n4096, .n8192 {
+    color: #fff;
+  }
+
+  .n2, .n4, .n8, .n16, .n32, .n64 {
+    font-size: 40px;
+  }
+
+  .n128, .n256, .n512 {
+    font-size: 25px;
+  }
+
+  .n1024, .n2048, .n4096, .n8192 {
+    font-size: 20px;
+  }
+}
+
+//游戏结束弹窗
+.end-pop {
+  background: #ccc0b3;
+  opacity: 0.8;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  font-size: 47px;
+  text-align: center;
+  font-weight: bold;
+  color: red;
+  display: none;
+  &.show {
+    display: block;
+  }
+  p {
+    &:first-child {
+      margin-top: 147px;
+    }
+  }
+  a {
+    text-decoration: none;
+    color: greenyellow;
+    display: inline-block;
+    background: gray;
+    border-radius: 5px;
+    padding: 5px 5px;
+  }
+}
+
+//游戏区域
+//顶部计分栏
+.top {
+  width: 220px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+  .top-left {
+    float: left;
+    background: orange;
+    opacity: 0.6;
+    font-weight: bold;
+    color: #fff;
+    font-size: 24px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    margin-right: 5px;
+    box-sizing: border-box;
+    border-radius: 6px;
+  }
+  .top-right {
+    div {
+      background: #ccc0b3;
+      float: left;
+      text-align: center;
+      width: 75px;
+      border-radius: 3px;
+      p {
+        margin: 0;
+        font-size: 12px;
+        color: #fff;
+        height: 12px;
+        line-height: 12px;
+        margin-bottom: 2px;
+        &:first-child {
+          color: gray;
+        }
+      }
+      &:nth-child(2) {
+        margin-left: 5px;
+      }
+      &:last-child {
+        background: #E4393c;
+        color: #fff;
+        margin-top: 5px;
+        height: 27px;
+        line-height: 27px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+//底部游戏栏
+.gridPanel {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+  background: #bbada0;
+  position: relative;
+  border-radius: 5px;
+  div {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    &.grid { //底层背景框
+      float: left;
+      margin: 4px 0 0 4px;
+      background: #ccc0b3;
+    }
+    &.cell { //上层分数框
+      position: absolute;
+      text-align: center;
+      line-height: 50px;
+    }
+    $spacing: 4px; //间距
+    $width: 50px; //1个元素的宽
+    &[id^="c0"] {
+      top: $spacing+($spacing+$width)*0;
+    }
+    &[id^="c1"] {
+      top: $spacing+($spacing+$width)*1;
+    }
+    &[id^="c2"] {
+      top: $spacing+($spacing+$width)*2;
+    }
+    &[id^="c3"] {
+      top: $spacing+($spacing+$width)*3;
+    }
+    &[id$="0"] {
+      left: $spacing+($spacing+$width)*0;
+    }
+    &[id$="1"] {
+      left: $spacing+($spacing+$width)*1;
+    }
+    &[id$="2"] {
+      left: $spacing+($spacing+$width)*2;
+    }
+    &[id$="3"] {
+      left: $spacing+($spacing+$width)*3;
+    }
+  }
+}
+
+@media screen and (min-width: 500px) { //电脑端
+  .game {
+    .n2, .n4, .n8, .n16, .n32, .n64 {
+      font-size: 60px;
+    }
+
+    .n128, .n256, .n512 {
+      font-size: 50px;
+    }
+
+    .n1024, .n2048, .n4096, .n8192 {
+      font-size: 40px;
+    }
+  }
+  .end-pop {
+    font-size: 56px;
+    p {
+      &:first-child {
+        margin-top: 256px;
+      }
+    }
+  }
+  .top {
+    width: 480px;
+    margin-bottom: 20px;
+    .top-left {
+      font-size: 65px;
+      width: 160px;
+      height: 160px;
+      line-height: 160px;
+      margin-right: 20px;
+      border-radius: 18px;
+    }
+    .top-right {
+      div {
+        width: 140px;
+        border-radius: 9px;
+        p {
+          height: auto;
+          line-height: normal;
+          font-size: 27px;
+          margin-bottom: 0;
+        }
+        &:nth-child(2) {
+          margin-left: 20px;
+        }
+        &:last-child {
+          margin-top: 30px;
+          height: 58px;
+          line-height: 58px;
+          font-size: 25px;
+        }
+      }
+    }
+  }
+  .gridPanel {
+    width: 480px;
+    height: 480px;
+    border-radius: 10px;
+    div {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      &.grid {
+        margin: 16px 0 0 16px;
+      }
+      &.cell {
+        line-height: 100px;
+      }
+      $spacing: 16px;
+      $width: 100px;
+      &[id^="c0"] {
+        top: 16px;
+      }
+      &[id^="c1"] {
+        top: 132px;
+      }
+      &[id^="c2"] {
+        top: 248px;
+      }
+      &[id^="c3"] {
+        top: 364px;
+      }
+      &[id$="0"] {
+        left: 16px;
+      }
+      &[id$="1"] {
+        left: 132px;
+      }
+      &[id$="2"] {
+        left: 248px;
+      }
+      &[id$="3"] {
+        left: 364px;
+      }
+    }
+  }
+}
